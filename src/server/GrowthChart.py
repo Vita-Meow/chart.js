@@ -32,7 +32,7 @@ def get_baby_growth_chart(name, min_of_y, max_of_y, sum_of_month, data):
       
       
     '''
-    custom_css_file = '/tmp/pygal_custom_style.css'
+    custom_css_file = '../../public/charts/growthChart.css'
     with open(custom_css_file, 'w') as f:
       f.write(custom_css)
     custom_style = Style(
