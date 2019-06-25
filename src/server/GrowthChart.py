@@ -36,7 +36,7 @@ line_chart.add('Min', [(0, 37), (1, 38.1), (2, 39), (3, 39.1), (4, 40.1)], show_
 line_chart.add('Max', [(0, 37.7), (1, 38.1), (2, 39), (3, 39.1), (4, 40.1)], show_dots=False)
 line_chart.add('RealData', [(0.1, 37.7), (0.8, 37.7), (1.1, 38.1), (2.2, 39), (3.3, 39.1), (4, 40.1)], allow_interruptions=False)
 res = line_chart.render()
-with open('growthChart.svg', 'w') as outfile:
+with open('../../public/charts/growthChart.svg', 'w') as outfile:
     outfile.write(res.decode('utf-8'))
 
 
