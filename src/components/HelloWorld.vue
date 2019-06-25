@@ -35,6 +35,6 @@ a {
 }
 
 .chart object{
-  width: 600px;
+  width: 443px;
 }
 </style>
