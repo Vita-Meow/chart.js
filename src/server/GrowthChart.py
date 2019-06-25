@@ -24,6 +24,12 @@ def get_baby_growth_chart(name, min_of_y, max_of_y, sum_of_month, data):
           display: none;
       }
       
+      {{ id }}.axis text { 
+          font-size: 14px;
+          font-family: Helvetica Neue;
+          color: rgb(128,128,128);
+      }
+      
       
     '''
     custom_css_file = '/tmp/pygal_custom_style.css'
@@ -38,7 +44,10 @@ def get_baby_growth_chart(name, min_of_y, max_of_y, sum_of_month, data):
     config.css.append('file://' + custom_css_file)
     line_chart = pygal.XY(config)
     line_chart.x_labels = map(str, range(0, sum_of_month))
-    line_chart.y_labels = 35, 37, 39, 41
+    line_chart.y_labels = [min_of_y]
+    gap = round((max_of_y - min_of_y)/3);
+    for x in range(3):
+       line_chart.y_labels.append(int(line_chart.y_labels[x]+gap))
     line_chart.add('Average', data["Average"], show_dots=False, stroke_style={'width': 2})
     line_chart.add('Min', data["Min"], show_dots=False, stroke_style={'width': 2})
     line_chart.add('Max', data["Max"], show_dots=False, stroke_style={'width': 2})
@@ -56,7 +65,7 @@ data_example = {
 
 }
 
-get_baby_growth_chart("Weight", 35, 41, 5, data_example )
+get_baby_growth_chart("Weight(kg)", 35, 43, 5, data_example )
 
 # params
 # ***** name *******:
