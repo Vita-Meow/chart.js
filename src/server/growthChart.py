@@ -15,7 +15,7 @@ def get_baby_growth_chart(name, min_of_y, max_of_y, start_of_month, end_of_month
       }
 
       {{ id }}.axis .guide.line { 
-          stroke-dasharray: 12,8;
+          stroke-dasharray: 6,6;
           stroke: rgb(211, 214 ,221);
           stroke-width: 2px;
       }

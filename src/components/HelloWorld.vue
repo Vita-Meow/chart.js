@@ -4,6 +4,12 @@
     <div class="chart">
       <object type="image/svg+xml" data="/charts/growthChart.svg">Your browser does not support iframes</object>
     </div>
+    <div class="chart">
+      <object type="image/svg+xml" data="/charts/barChart.svg">Your browser does not support iframes</object>
+    </div>
+    <div class="chart">
+      <object type="image/svg+xml" data="/charts/stackChart.svg">Your browser does not support iframes</object>
+    </div>
    
   </div>
 </template>

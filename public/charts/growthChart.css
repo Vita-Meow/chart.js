@@ -1,0 +1,28 @@
+
+      {{ id }}.axis .line {    
+        stroke: rgb(211, 214 ,221);
+        stroke-width: 2px;
+      }
+
+      {{ id }}.graph {  
+        fill: rgb(128,128,128);
+      }
+
+      {{ id }}.axis .guide.line { 
+          stroke-dasharray: 12,8;
+          stroke: rgb(211, 214 ,221);
+          stroke-width: 2px;
+      }
+      
+      {{ id }}.axis.y .guides:first-child { 
+          display: none;
+      }
+      
+      {{ id }}.axis text { 
+          font-size: 14px;
+          font-family: Helvetica Neue;
+          color: rgb(128,128,128);
+      }
+      
+      
+    
