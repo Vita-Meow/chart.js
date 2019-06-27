@@ -9,7 +9,7 @@ MAPPING = {
 }
 custom_css = '''
      {{ id }}.axis .line {    
-       stroke: rgb(211, 214 ,221);
+       stroke: rgb(211, 214 ,221,0.6);
        stroke-width: 2px;
      }
 
@@ -19,18 +19,18 @@ custom_css = '''
      
      {{ id }}.axis .line { 
         stroke-dasharray: 7,7;
-        stroke: rgb(211,214,221,0.8);;
+        stroke: rgb(211,214,221,0.6);
         stroke-width: 2px;
      }
 
      {{ id }}.axis .guide.line { 
          stroke-dasharray: 7,7;
-         stroke: rgb(211,214,221,0.8);;
+         stroke: rgb(211,214,221,0.6);
          stroke-width: 2px;
      }
      
      {{ id }}.axis .major.line {
-        stroke: rgb(211, 214 ,221);
+        stroke: rgb(211, 214 ,221,0.6);
      }
      
 
@@ -45,6 +45,41 @@ custom_css = '''
         stroke-opacity: 1;
         width: 11px !important;
      }
+     
+     {{ id }}.axis.x text {
+        display: none;
+     }
+     {{ id }}.axis text {
+        font-size: 18px;
+        font-family: Helvetica Neue;
+        color: rgb(142,141,147);
+     }
+     
+      
+      {{ id }}.axis.x .guides:nth-child(6) text{ 
+          display: block;
+      }
+      
+      {{ id }}.axis.x .guides:nth-child(11) text{ 
+          display: block;
+      }
+      
+       {{ id }}.axis.x .guides:nth-child(16) text{ 
+          display: block;
+      }
+      
+        
+       {{ id }}.axis.x .guides:nth-child(21) text{ 
+          display: block;
+      }
+      
+       {{ id }}.axis.x .guides:nth-child(26) text{ 
+          display: block;
+      }
+      
+      {{ id }}.axis.x .guides:nth-child(31) text{ 
+         display: block;
+      }
 
 
    '''

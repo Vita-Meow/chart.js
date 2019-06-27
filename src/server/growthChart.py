@@ -35,6 +35,14 @@ def get_baby_growth_chart(name, min_of_y, max_of_y, start_of_month, end_of_month
           color: rgb(128,128,128);
       }
       
+         
+     {{ id }}.axis text {
+        font-size: 18px;
+        font-family: Helvetica Neue;
+        color: rgb(142,141,147);
+     }
+
+      
       
     '''
     custom_css_file = '../../public/charts/growthChart.css'
