@@ -41,6 +41,6 @@ a {
 }
 
 .chart object{
-  width: 413px;
+  width: 313px;
 }
 </style>

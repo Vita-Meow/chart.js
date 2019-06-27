@@ -43,7 +43,7 @@ custom_css = '''
      {{ id }}.reactive {
         fill-opacity: 1;
         stroke-opacity: 1;
-        width: 11px !important;
+        width: 10px !important;
      }
      
      {{ id }}.axis.x text {
@@ -55,6 +55,10 @@ custom_css = '''
         color: rgb(142,141,147);
      }
      
+      {{ id }} .bars .bar rect {
+        transform: translate(-8px,0)!important;
+     }
+ 
       
       {{ id }}.axis.x .guides:nth-child(6) text{ 
           display: block;
