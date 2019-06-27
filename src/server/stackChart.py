@@ -1,5 +1,41 @@
 import pygal as pygal
+from pygal.style import Style
+custom_css = '''
+    {{ id }}.axis .line {    
+      stroke: rgb(211, 214 ,221);
+      stroke-width: 2px;
+    }
 
+    {{ id }}.graph {  
+      fill: rgb(128,128,128);
+    }
+
+    {{ id }}.axis .guide.line { 
+        stroke-dasharray: 8,8;
+        stroke: rgb(211, 214 ,221, 0.8);
+        stroke-width: 2px;
+    }
+
+    {{ id }}.axis.y .guides:nth-child(2){ 
+        display: none;
+    }
+
+    {{ id }}.axis.x .guides:nth-child(2){ 
+        display: none;
+    }
+
+
+    {{ id }}.axis text { 
+        font-size: 14px;
+        font-family: Helvetica Neue;
+        color: rgb(128,128,128);
+    }
+
+
+  '''
+custom_css_file = '../../public/charts/growthChart.css'
+with open(custom_css_file, 'w') as f:
+    f.write(custom_css)
 stack_chart = pygal.StackedBar()
 stack_chart.title = 'stack bar chart'
 stack_chart.x_labels = map(str, range(2002, 2013))

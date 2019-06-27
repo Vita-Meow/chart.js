@@ -16,16 +16,23 @@ custom_css = '''
      {{ id }}.graph {  
        fill: rgb(128,128,128);
      }
+     
+     {{ id }}.axis .line { 
+        stroke-dasharray: 7,7;
+        stroke: rgb(211,214,221,0.8);;
+        stroke-width: 2px;
+     }
 
      {{ id }}.axis .guide.line { 
-         stroke-dasharray: 6,6;
-         stroke: rgb(211, 214 ,221);
+         stroke-dasharray: 7,7;
+         stroke: rgb(211,214,221,0.8);;
          stroke-width: 2px;
      }
-
-     {{ id }}.axis.y .guides:first-child { 
-         display: none;
+     
+     {{ id }}.axis .major.line {
+        stroke: rgb(211, 214 ,221);
      }
+     
 
      {{ id }}.axis text { 
          font-size: 14px;
@@ -36,7 +43,7 @@ custom_css = '''
      {{ id }}.reactive {
         fill-opacity: 1;
         stroke-opacity: 1;
-        width: 8px !important;
+        width: 11px !important;
      }
 
 
@@ -49,13 +56,12 @@ custom_style = Style(
   plot_background='transparent',
   transition='400ms ease-in',
   colors=('rgb(255,121,121)', 'rgb(255,220,51)', 'rgb(255,220,51)', 'rgb(252,141,0)'))
-config = pygal.Config(range=(1, 100), show_x_guides=True, style=custom_style, show_legend=False, height=280, rounded_bars=1)
+config = pygal.Config(range=(0, 60), show_x_guides=True, style=custom_style, show_legend=False, height=280, rounded_bars=2)
 config.css.append('file://' + custom_css_file)
 bar_chart = pygal.Bar(config)
-bar_chart.title = 'Bar chart'
-bar_chart.x_labels = map(str, range(1, 30))
-bar_chart.y_labels = 0, 25, 50, 75, 100
-bar_chart.add('Firefox', [2, 8, 10, 16.6,   25,   31, 36.4, 45.5, 46.3, 42.8, 37.1])
+bar_chart.x_labels = map(str, range(1, 31))
+bar_chart.y_labels = 0, 15, 30, 45, 60
+bar_chart.add('Firefox', [ 42.8, 37.1,25, 25,31, 36.4, 45.5, 46.3, 42.8, 37.1,25,31, 36.4, 45.5, 46.3, 42.8, 37.1, 16.6, 25,31, 36.4, 45.5, 46.3, 42.8, 37.1,25,31])
 res = bar_chart.render()
 with open('../../public/charts/barChart.svg', 'w') as outfile:
     outfile.write(res.decode('utf-8'))

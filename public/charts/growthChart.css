@@ -9,14 +9,19 @@
       }
 
       {{ id }}.axis .guide.line { 
-          stroke-dasharray: 12,8;
-          stroke: rgb(211, 214 ,221);
+          stroke-dasharray: 8,8;
+          stroke: rgb(211, 214 ,221, 0.8);
           stroke-width: 2px;
       }
       
-      {{ id }}.axis.y .guides:first-child { 
+      {{ id }}.axis.y .guides:nth-child(2){ 
           display: none;
       }
+      
+      {{ id }}.axis.x .guides:nth-child(2){ 
+          display: none;
+      }
+      
       
       {{ id }}.axis text { 
           font-size: 14px;

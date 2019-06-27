@@ -7,7 +7,7 @@
     <div class="chart">
       <object type="image/svg+xml" data="/charts/barChart.svg">Your browser does not support iframes</object>
     </div>
-    <div class="chart">
+    <div class="chart" style="display:none">
       <object type="image/svg+xml" data="/charts/stackChart.svg">Your browser does not support iframes</object>
     </div>
    
@@ -41,6 +41,6 @@ a {
 }
 
 .chart object{
-  width: 443px;
+  width: 413px;
 }
 </style>
