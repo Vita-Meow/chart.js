@@ -1,86 +1,115 @@
 import pygal as pygal
 from pygal.style import Style
 
-
+UOM_MAPPING = {
+    'weight': "Weight(kg)",
+    'height': "Height(cm)",
+    'head_circ': "Head Circ.(cm)"
+}
 def get_baby_growth_chart(name, min_of_y, max_of_y, min_of_x, max_of_x, data):
     print(name)
     custom_css = '''
-      {{ id }}.axis .line {    
-        stroke: rgb(211, 214 ,221);
-        stroke-width: 2px;
-      }
-
-      {{ id }}.graph {  
-        fill: rgb(128,128,128);
-      }
-
-      {{ id }}.axis .guide.line { 
-          stroke-dasharray: 8,8;
-          stroke: rgb(211, 214 ,221, 0.8);
-          stroke-width: 2px;
-      }
- 
-      {{ id }}.axis.y text { 
-          font-size: 16px;
-          font-family: Helvetica Neue;
-          color: rgb(142,141,147);
-      }
+     {{ id }}.axis .line {
+      stroke: rgb(211, 214 ,221);
+      stroke-width: 2px;
+    }
     
-      
-      {{ id }}.axis.x text {
-        font-size: 16px;
-        font-family: Helvetica Neue;
-        color: rgb(142,141,147);
-        transform: translateY(10px);
-      }
+    {{ id }}.graph {
+      fill: rgb(128,128,128);
+    }
+    
+    {{ id }}.axis text {
+      font-size: 14px;
+      font-family: Helvetica Neue;
+      fill: rgb(128,128,128);
+    }
+    
+    {{ id }}.axis.y text { 
+      font-size: 16px;
+      font-family: Helvetica Neue;
+      color: rgb(142,141,147);
+    }
+    
+    {{ id }}.axis.x text {
+      font-size: 16px;
+      font-family: Helvetica Neue;
+      fill: rgb(142,141,147);
+      transform: translateY(10px);
+    }
+    
+    {{ id }}.title:first-child {
+      fill: rgba(142,142,147,1);
+      font-family: Helvetica Neue;
+      font-size: 16px;
+      transform: translate(337px, 0px);
+    }
+    
+    {{ id }}.title:nth-child(2) {
+      fill: rgba(142,142,147,1);
+      font-family: Helvetica Neue;
+      font-size: 16px;
+      transform: translate(53px,-151px);
+    }
+    
+    {{ id }}.axis.x .line{
+      display: none;
+    }
+    
+    {{ id }}.axis.x .guides .line{
+      display: block;
+    }
+    
+    {{ id }}.axis.y .line{
+      display: none;
+    }
+    
+    {{ id }}.axis.y .guides .line{
+      display: block;
+    }
+    
+    {{ id }}.axis .guide.line {
+      stroke-dasharray: 8,8;
+      stroke: rgba(211, 214 ,221, 0.8);
+      stroke-width: 2px;
+    }
+    {{ id }}.axis .major.guide.line {
+      stroke-dasharray: none;
+      stroke: rgb(211, 214, 221);
+      stroke-width: 2px;
+    }
+    {{ id }}.axis .axis.major.line {
+      stroke-dasharray: none;
+      stroke: rgb(211, 214, 221);
+      stroke-width: 2px;
+    }
+    
+    {{ id }}.axis .major+text {
+      font-size: 14px;
+      font-family: Helvetica Neue;
+      fill: rgb(128,128,128) !important;
+    }
+    
 
-      {{ id }}.title:first-child {
-        fill: rgba(142,142,147,1);
-        font-family: Helvetica Neue;
-        font-size: 16px;
-        transform: translate(337px, 0px);
-      }
-      
-      {{ id }}.title:nth-child(2) {
-        fill: rgba(142,142,147,1);
-        font-family: Helvetica Neue;
-        font-size: 16px;
-        transform: translate(53px,-151px);
-      }
-       
-      {{ id }}.title:first-child:after {
-        content:'50%';       
-      }
-      
-      {{ id }}.axis.x.always_show .line{
-        display: none;
-      }
-      
-       {{ id }}.axis.x.always_show .guides .line{
-        display: block;
-      }
-      
-       {{ id }}.axis.y.always_show .line{
-        display: none;
-      }
-      
-       {{ id }}.axis.y.always_show .guides .line{
-        display: block;
-      }
-      
     '''
     custom_css_file = '../../public/charts/growthChart.css'
     with open(custom_css_file, 'w') as f:
       f.write(custom_css)
     custom_style = Style(
-      background='transparent',
-      plot_background='transparent',
-      transition='400ms ease-in',
-      colors=('rgb(255,220,51)', 'rgb(255,220,51)', 'rgb(255,220,51)', 'rgb(252,141,0)'))
-    uom = "Weight(kg)"
-    config = pygal.Config(range=(min_of_y, max_of_y), xrange=(min_of_x, max_of_x), show_x_guides=True,
-                          margin_top=50,y_title=uom, x_title="Month",zero=min_of_y,
-                          style=custom_style, show_legend=False, height=320)
+        background='transparent',
+        plot_background='transparent',
+        transition='400ms ease-in',
+        colors=('rgb(255,220,51)', 'rgb(255,220,51)', 'rgb(255,220,51)', 'rgb(252,141,0)'))
+
+    uom = UOM_MAPPING[name]
+    config = pygal.Config(
+        range=(min_of_y, max_of_y),
+        xrange=(min_of_x, max_of_x),
+        show_x_guides=True, style=custom_style,
+        margin_top=50, y_title=uom, x_title="Month",
+        show_legend=False, height=300,
+        x_labels_major_every=99999,
+        y_labels_major_every=99999,
+    )
     config.css.append('file://' + custom_css_file)
     line_chart = pygal.XY(config)
     line_chart.y_labels = [min_of_y]
@@ -106,7 +135,7 @@ data_example = {
               (25.295693956754757, 106.59), (25.62424279759338, 108.24), (26.03285488408386, 109.26)]
 }
 
-get_baby_growth_chart("Weight(kg)", 66 ,141 ,20, 26 ,data_example )
+get_baby_growth_chart("weight", 66 ,141 ,20, 26 ,data_example )
 
 # params
 # ***** name *******:

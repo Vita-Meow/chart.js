@@ -1,66 +1,83 @@
 
-      {{ id }}.axis .line {    
-        stroke: rgb(211, 214 ,221);
-        stroke-width: 2px;
-      }
-
-      {{ id }}.graph {  
-        fill: rgb(128,128,128);
-      }
-
-      {{ id }}.axis .guide.line { 
-          stroke-dasharray: 8,8;
-          stroke: rgb(211, 214 ,221, 0.8);
-          stroke-width: 2px;
-      }
- 
-      {{ id }}.axis.y text { 
-          font-size: 16px;
-          font-family: Helvetica Neue;
-          color: rgb(142,141,147);
-      }
+     {{ id }}.axis .line {
+      stroke: rgb(211, 214 ,221);
+      stroke-width: 2px;
+    }
     
-      
-      {{ id }}.axis.x text {
-        font-size: 16px;
-        font-family: Helvetica Neue;
-        color: rgb(142,141,147);
-        transform: translateY(10px);
-      }
+    {{ id }}.graph {
+      fill: rgb(128,128,128);
+    }
+    
+    {{ id }}.axis text {
+      font-size: 14px;
+      font-family: Helvetica Neue;
+      fill: rgb(128,128,128);
+    }
+    
+    {{ id }}.axis.y text { 
+      font-size: 16px;
+      font-family: Helvetica Neue;
+      color: rgb(142,141,147);
+    }
+    
+    {{ id }}.axis.x text {
+      font-size: 16px;
+      font-family: Helvetica Neue;
+      fill: rgb(142,141,147);
+      transform: translateY(10px);
+    }
+    
+    {{ id }}.title:first-child {
+      fill: rgba(142,142,147,1);
+      font-family: Helvetica Neue;
+      font-size: 16px;
+      transform: translate(337px, 0px);
+    }
+    
+    {{ id }}.title:nth-child(2) {
+      fill: rgba(142,142,147,1);
+      font-family: Helvetica Neue;
+      font-size: 16px;
+      transform: translate(53px,-151px);
+    }
+    
+    {{ id }}.axis.x .line{
+      display: none;
+    }
+    
+    {{ id }}.axis.x .guides .line{
+      display: block;
+    }
+    
+    {{ id }}.axis.y .line{
+      display: none;
+    }
+    
+    {{ id }}.axis.y .guides .line{
+      display: block;
+    }
+    
+    {{ id }}.axis .guide.line {
+      stroke-dasharray: 8,8;
+      stroke: rgba(211, 214 ,221, 0.8);
+      stroke-width: 2px;
+    }
+    {{ id }}.axis .major.guide.line {
+      stroke-dasharray: none;
+      stroke: rgb(211, 214, 221);
+      stroke-width: 2px;
+    }
+    {{ id }}.axis .axis.major.line {
+      stroke-dasharray: none;
+      stroke: rgb(211, 214, 221);
+      stroke-width: 2px;
+    }
+    
+    {{ id }}.axis .major+text {
+      font-size: 14px;
+      font-family: Helvetica Neue;
+      fill: rgb(128,128,128) !important;
+    }
+    
 
-      {{ id }}.title:first-child {
-        fill: rgba(142,142,147,1);
-        font-family: Helvetica Neue;
-        font-size: 16px;
-        transform: translate(337px, 0px);
-      }
-      
-      {{ id }}.title:nth-child(2) {
-        fill: rgba(142,142,147,1);
-        font-family: Helvetica Neue;
-        font-size: 16px;
-        transform: translate(53px,-151px);
-      }
-       
-      {{ id }}.title:first-child:after {
-        content:'50%';       
-        
-      }
-      
-      {{ id }}.axis.x.always_show .line{
-        display: none;
-      }
-      
-       {{ id }}.axis.x.always_show .guides .line{
-        display: block;
-      }
-      
-       {{ id }}.axis.y.always_show .line{
-        display: none;
-      }
-      
-       {{ id }}.axis.y.always_show .guides .line{
-        display: block;
-      }
-      
     
