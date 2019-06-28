@@ -59,7 +59,7 @@ def get_stack_chart(name, data,labels_of_x ,max_of_y, uom):
             fill: rgba(142,142,147,1);
             font-family: Helvetica Neue;
             font-size: 19px;
-            transform: translate(35px,-131px);
+            transform: translate(53px,-147px);
          }
          {{ id }}.stackedbar-graph .plot {
              transform: translate(45px, 36px);
@@ -72,7 +72,7 @@ def get_stack_chart(name, data,labels_of_x ,max_of_y, uom):
          }
          
          {{ id }} .legends {
-              transform: translate(84px,259px)!important;
+              transform: translate(84px,299px)!important;
          }
          
          {{ id }} .bars .bar rect {
@@ -110,14 +110,16 @@ def get_stack_chart(name, data,labels_of_x ,max_of_y, uom):
                 rx: 5;
           }
           
-          {{ id }}.legends .legend:first-child text{
+    
+          {{ id }}.legends .legend text{
             transform: translate(10px, 7px);
           }
           
-            {{ id }}.legends .legend:nth-child(2) text{
-            transform: translate(10px, 7px);
+          {{ id }}.axis.y text{
+             transform: translate(-6px, 0);
           }
-          
+         
+     
           
     
     
@@ -131,8 +133,8 @@ def get_stack_chart(name, data,labels_of_x ,max_of_y, uom):
       colors=('rgb(91,98,210)','rgb(255,199,35)','rgb(71,197,255)','rgb(40,215,205)'))
     with open(custom_css_file, 'w') as f:
         f.write(custom_css)
-    config = pygal.Config(range=(0, 120), show_x_guides=True, style=custom_style, show_legend=True,
-                          height=280,legend_at_bottom=True,legend_at_bottom_columns=2,y_title=uom,
+    config = pygal.Config(range=(0, max_of_y), show_x_guides=True, style=custom_style, show_legend=True,
+                          height=320,legend_at_bottom=True,legend_at_bottom_columns=len(data),y_title=uom,
                               rounded_bars=2)
     config.css.append('file://' + custom_css_file)
     stack_chart = pygal.StackedBar(config)
@@ -149,6 +151,8 @@ def get_stack_chart(name, data,labels_of_x ,max_of_y, uom):
     with open('../../public/charts/stackChart.svg', 'w') as outfile:
         outfile.write(res.decode('utf-8'))
 
+data_of_example_1={'Poop': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'Pee': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'Mixed': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'Clean': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+labels_for_x_1= ['2019/06/10', '2019/06/11', '2019/06/12', '2019/06/13', '2019/06/14', '2019/06/15', '2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22', '2019/06/23', '2019/06/24', '2019/06/25', '2019/06/26', '2019/06/27', '2019/06/28', '2019/06/29', '2019/06/30', '2019/07/01', '2019/07/02', '2019/07/03', '2019/07/04', '2019/07/05', '2019/07/06', '2019/07/07', '2019/07/08', '2019/07/09']
 data_of_example = {
    'Daytime sleep':[85.8, 84.6, 84.7, 74.5,  85.8, 84.6, 84.7, 74.5,  85.8, 84.6, 84.7, 74.5,85.8, 84.6, 84.7, 74.5],
    'Daytime sleep2': [31.3, 31.3, 31.3, 26.6,  31.3, 31.3, 31.3, 26.6,   31.3, 31.3, 31.3, 16.6, 31.3, 31.3, 31.3, 26.6,]
@@ -157,7 +161,7 @@ labels_for_x = ['5 Jan','6 Jan', '7 Jan', '8 Jan', '9 Jan', '10 Jan','11 Jan','1
                 ,'17 Jan', '18Jan', '19Jan', "20 Jan", "21 Jan", "22 Jan", "23 Jan", "24 Jan", "25 Jan",'26 Jan', '27 Jan', "28 Jan" ,"30 Jan", "31 Jan" ,"1 Feb", "2 Feb", "3 Feb"
                 '4 Feb', '5 Feb']
 
-get_stack_chart('diapper', data_of_example,labels_for_x ,120, "hours" )
+get_stack_chart('diapper', data_of_example_1,labels_for_x_1 ,2, "hours" )
 
 #  stack chart params
 # get_stack_chart(name, data,labels_of_x ,max_of_y, uom )
