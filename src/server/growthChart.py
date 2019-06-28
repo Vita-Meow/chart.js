@@ -48,7 +48,7 @@ def get_baby_growth_chart(name, min_of_y, max_of_y, min_of_x, max_of_x, data):
       fill: rgba(142,142,147,1);
       font-family: Helvetica Neue;
       font-size: 16px;
-      transform: translate(53px,-151px);
+      transform: translate(53px,-143px);
     }
     
     {{ id }}.axis.x .line{
