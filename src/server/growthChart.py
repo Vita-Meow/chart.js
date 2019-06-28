@@ -25,7 +25,6 @@ def get_baby_growth_chart(name, min_of_y, max_of_y, min_of_x, max_of_x, data):
           font-family: Helvetica Neue;
           color: rgb(142,141,147);
       }
-      
     
       
       {{ id }}.axis.x text {
@@ -50,7 +49,23 @@ def get_baby_growth_chart(name, min_of_y, max_of_y, min_of_x, max_of_x, data):
       }
        
       {{ id }}.title:first-child:after {
-        content:'50%';
+        content:'50%';       
+      }
+      
+      {{ id }}.axis.x.always_show .line{
+        display: none;
+      }
+      
+       {{ id }}.axis.x.always_show .guides .line{
+        display: block;
+      }
+      
+       {{ id }}.axis.y.always_show .line{
+        display: none;
+      }
+      
+       {{ id }}.axis.y.always_show .guides .line{
+        display: block;
       }
       
     '''
