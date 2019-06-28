@@ -2,7 +2,7 @@ import pygal as pygal
 from pygal.style import Style
 
 
-def get_baby_growth_chart(name, min_of_y, max_of_y, start_of_month, end_of_month, data):
+def get_baby_growth_chart(name, min_of_y, max_of_y, min_of_x, max_of_x, data):
     print(name)
     custom_css = '''
       {{ id }}.axis .line {    
@@ -19,30 +19,39 @@ def get_baby_growth_chart(name, min_of_y, max_of_y, start_of_month, end_of_month
           stroke: rgb(211, 214 ,221, 0.8);
           stroke-width: 2px;
       }
-      
-      {{ id }}.axis.y .guides:nth-child(2){ 
-          display: none;
-      }
-      
-      {{ id }}.axis.x .guides:nth-child(2){ 
-          display: none;
-      }
-      
-      
-      {{ id }}.axis text { 
-          font-size: 14px;
+ 
+      {{ id }}.axis.y text { 
+          font-size: 16px;
           font-family: Helvetica Neue;
-          color: rgb(128,128,128);
+          color: rgb(142,141,147);
       }
       
-         
-     {{ id }}.axis text {
-        font-size: 18px;
+    
+      
+      {{ id }}.axis.x text {
+        font-size: 16px;
         font-family: Helvetica Neue;
         color: rgb(142,141,147);
-     }
+        transform: translateY(10px);
+      }
 
+      {{ id }}.title:first-child {
+        fill: rgba(142,142,147,1);
+        font-family: Helvetica Neue;
+        font-size: 16px;
+        transform: translate(337px, 0px);
+      }
       
+      {{ id }}.title:nth-child(2) {
+        fill: rgba(142,142,147,1);
+        font-family: Helvetica Neue;
+        font-size: 16px;
+        transform: translate(53px,-151px);
+      }
+       
+      {{ id }}.title:first-child:after {
+        content:'50%';
+      }
       
     '''
     custom_css_file = '../../public/charts/growthChart.css'
@@ -53,17 +62,19 @@ def get_baby_growth_chart(name, min_of_y, max_of_y, start_of_month, end_of_month
       plot_background='transparent',
       transition='400ms ease-in',
       colors=('rgb(255,220,51)', 'rgb(255,220,51)', 'rgb(255,220,51)', 'rgb(252,141,0)'))
-    config = pygal.Config(range=(min_of_y, max_of_y), show_x_guides=True, style=custom_style, show_legend=False, height=280)
+    uom = "Weight(kg)"
+    config = pygal.Config(range=(min_of_y, max_of_y), xrange=(min_of_x, max_of_x), show_x_guides=True,
+                          margin_top=50,y_title=uom, x_title="Month",zero=min_of_y,
+                          style=custom_style, show_legend=False, height=320)
     config.css.append('file://' + custom_css_file)
     line_chart = pygal.XY(config)
-    line_chart.x_labels = map(str, range(start_of_month, end_of_month))
     line_chart.y_labels = [min_of_y]
     gap = round((max_of_y - min_of_y)/3);
     for x in range(3):
        line_chart.y_labels.append(int(line_chart.y_labels[x]+gap))
     line_chart.add('Average', data["Average"], show_dots=False, stroke_style={'width': 2})
-    line_chart.add('Min', data["Min"], show_dots=False, stroke_style={'width': 2})
-    line_chart.add('Max', data["Max"], show_dots=False, stroke_style={'width': 2})
+    line_chart.add('Min', data["Min"], show_dots=True, stroke_style={'width': 2})
+    line_chart.add('Max', data["Max"], show_dots=True, stroke_style={'width': 2})
     line_chart.add('RealData',  data["RealData"], stroke_style={'width': 3}, dots_size=6, allow_interruptions=False)
     res = line_chart.render()
     with open('../../public/charts/growthChart.svg', 'w') as outfile:
@@ -80,7 +91,7 @@ data_example = {
               (25.295693956754757, 106.59), (25.62424279759338, 108.24), (26.03285488408386, 109.26)]
 }
 
-get_baby_growth_chart("Weight(kg)", 66 ,141 ,20, 27 ,data_example )
+get_baby_growth_chart("Weight(kg)", 66 ,141 ,20, 26 ,data_example )
 
 # params
 # ***** name *******:
